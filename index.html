@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arnav Sharma — Data Science &amp; ML</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper:#F6F5F1;
+    --paper-raised:#FFFFFF;
+    --ink:#1C1B19;
+    --ink-soft:#57544D;
+    --ink-faint:#8B877D;
+    --accent:#2F4FE0;
+    --accent-soft:#E7EBFC;
+    --rule:#DEDBD2;
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Fraunces', serif;
+    --sans: 'Inter', sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,245,241,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  nav .wrap{display:flex; justify-content:space-between; align-items:center; height:60px;}
+  .nav-mark{font-family:var(--mono); font-size:13px; letter-spacing:0.02em; color:var(--ink);}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:14px;}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover{color:var(--accent);}
+  @media (max-width:600px){ .nav-links{gap:16px; font-size:12.5px;} }
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:96px 0 72px; border-bottom:1px solid var(--rule);}
+  .eyebrow{
+    font-family:var(--mono); font-size:12.5px; color:var(--accent);
+    letter-spacing:0.06em; text-transform:uppercase; margin:0 0 18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--accent);}
+  h1.title{
+    font-family:var(--serif); font-weight:600; font-size:clamp(38px,6vw,64px);
+    line-height:1.04; margin:0 0 20px; letter-spacing:-0.01em;
+  }
+  h1.title em{font-style:italic; color:var(--accent); font-weight:500;}
+  .hero p.sub{
+    font-size:18px; color:var(--ink-soft); max-width:560px; margin:0 0 32px;
+  }
+  .hero-links{display:flex; flex-wrap:wrap; gap:12px;}
+  .pill{
+    font-family:var(--mono); font-size:13px; padding:9px 16px;
+    border:1px solid var(--rule); border-radius:100px; text-decoration:none;
+    color:var(--ink); background:var(--paper-raised); transition:border-color .15s, transform .15s;
+  }
+  .pill:hover{border-color:var(--accent); transform:translateY(-1px);}
+  .pill.primary{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .pill.primary:hover{background:var(--accent); border-color:var(--accent);}
+
+  /* ---------- SECTION LABELS ---------- */
+  section{padding:64px 0;}
+  section + section{border-top:1px solid var(--rule);}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px;}
+  .section-num{font-family:var(--mono); font-size:13px; color:var(--ink-faint);}
+  h2.section-title{
+    font-family:var(--serif); font-weight:600; font-size:28px; margin:0;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-text{font-size:16.5px; color:var(--ink-soft); max-width:640px;}
+  .about-text strong{color:var(--ink); font-weight:600;}
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:20px;
+  }
+  .project-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap:16px; margin-bottom:6px; flex-wrap:wrap;
+  }
+  .project-name{font-family:var(--serif); font-size:22px; font-weight:600;}
+  .project-link{
+    font-family:var(--mono); font-size:12.5px; color:var(--accent);
+    text-decoration:none; white-space:nowrap; border-bottom:1px solid transparent;
+  }
+  .project-link:hover{border-bottom-color:var(--accent);}
+  .project-stack{
+    font-family:var(--mono); font-size:11.5px; color:var(--ink-faint);
+    margin:6px 0 16px; letter-spacing:0.02em;
+  }
+  .project-desc{font-size:15px; color:var(--ink-soft); margin:0 0 18px;}
+  .stat-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .stat{
+    font-family:var(--mono); font-size:12.5px;
+    background:var(--accent-soft); color:var(--accent);
+    padding:5px 11px; border-radius:6px; white-space:nowrap;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px 40px;}
+  @media (max-width:600px){ .skills-grid{grid-template-columns:1fr;} }
+  .skill-row{border-bottom:1px solid var(--rule); padding-bottom:14px;}
+  .skill-cat{
+    font-family:var(--mono); font-size:11.5px; color:var(--ink-faint);
+    text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;
+  }
+  .skill-items{font-size:14.5px; color:var(--ink);}
+
+  /* ---------- EDUCATION ---------- */
+  .edu-row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; padding:14px 0; border-bottom:1px solid var(--rule);}
+  .edu-row:last-child{border-bottom:none;}
+  .edu-left strong{font-size:15.5px;}
+  .edu-left div{font-size:13.5px; color:var(--ink-soft); margin-top:2px;}
+  .edu-right{font-family:var(--mono); font-size:12.5px; color:var(--ink-faint); white-space:nowrap;}
+
+  /* ---------- FOOTER / CONTACT ---------- */
+  footer{padding:64px 0 80px; text-align:left;}
+  footer h2.section-title{margin-bottom:14px;}
+  footer p{color:var(--ink-soft); max-width:480px; margin:0 0 28px; font-size:15.5px;}
+  .foot-links{display:flex; gap:24px; flex-wrap:wrap; font-family:var(--mono); font-size:13.5px;}
+  .foot-links a{text-decoration:none; color:var(--ink); border-bottom:1px solid var(--rule); padding-bottom:2px; transition:border-color .15s, color .15s;}
+  .foot-links a:hover{color:var(--accent); border-color:var(--accent);}
+  .foot-note{margin-top:40px; font-family:var(--mono); font-size:11.5px; color:var(--ink-faint);}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark">arnav.sharma()</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Jodhpur, India</p>
+    <h1 class="title">Data science that<br><em>holds up</em> under testing.</h1>
+    <p class="sub">I'm Arnav — a Mechanical Engineering student at IIT Jodhpur building multi-agent LLM systems, ML pipelines, and analytics products, with an emphasis on results that are statistically defensible, not just demo-ready.</p>
+    <div class="hero-links">
+      <a class="pill primary" href="mailto:arnavsharma090406@gmail.com">Email me</a>
+      <a class="pill" href="https://github.com/arnavsharma09" target="_blank" rel="noopener">GitHub</a>
+      <a class="pill" href="https://linkedin.com/in/arnav-sharma09" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About</h2>
+    </div>
+    <p class="about-text">
+      I'm a pre-final year <strong>B.Tech Mechanical Engineering</strong> student at <strong>IIT Jodhpur</strong> (2024–2028), working on applied ML and LLM systems. My projects span self-correcting multi-agent architectures, credit-risk modeling, and SQL/BI analytics — built with an emphasis on validating assumptions statistically before trusting a result, rather than optimizing purely for a demo. I'm currently looking for a Data Science / Machine Learning internship where I can build and ship real systems.
+    </p>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Projects</h2>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">AutoInsight</span>
+        <a class="project-link" href="https://github.com/arnavsharma09/AutoInsight" target="_blank" rel="noopener">github.com/arnavsharma09/AutoInsight →</a>
+      </div>
+      <div class="project-stack">LangGraph · Polars · ChromaDB · FastAPI · Streamlit · Anthropic Claude API · Docker</div>
+      <p class="project-desc">A 7-node multi-agent pipeline (Profiler, Router, Planner, Coder, Sandbox, Critic, Reporter) that plans and executes statistical analyses, with a human-in-the-loop approval checkpoint before any code runs. A hybrid rule-based + semantic router selects from 60+ statistical tests, and a Critic agent auto-corrects methodology when normality assumptions fail — e.g. switching ANOVA to Kruskal-Wallis when Shapiro-Wilk rejects normality. All LLM-generated code executes in an AST-scanned sandbox; report claims are validated against computed metrics via DeepEval to catch hallucinated numbers.</p>
+      <div class="stat-row">
+        <span class="stat">18/18 tests passing</span>
+        <span class="stat">max 3 retries/step</span>
+        <span class="stat">60+ tests indexed</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">Credit Risk Prediction System</span>
+        <a class="project-link" href="https://github.com/arnavsharma09/credit-risk-prediction" target="_blank" rel="noopener">github.com/arnavsharma09/credit-risk-prediction →</a>
+      </div>
+      <div class="project-stack">Python · XGBoost · Scikit-learn · SHAP · SMOTE · Streamlit</div>
+      <p class="project-desc">A full ML pipeline on a 150K+ record dataset with severe class imbalance (93.7%), corrected via SMOTE. Random Forest, XGBoost, and Logistic Regression were benchmarked through cross-validation, with Random Forest selected as the best performer. SHAP explainability surfaces the top risk drivers per application, exposed through a real-time Streamlit scoring dashboard.</p>
+      <div class="stat-row">
+        <span class="stat">RF: 0.8588 AUC-ROC</span>
+        <span class="stat">XGB: 0.8492 AUC-ROC</span>
+        <span class="stat">LogReg: 0.8234 AUC-ROC</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">RetainIQ</span>
+        <a class="project-link" href="https://github.com/arnavsharma09/RetainIQ" target="_blank" rel="noopener">github.com/arnavsharma09/RetainIQ →</a>
+      </div>
+      <div class="project-stack">PostgreSQL · SQL · Python (scipy, statsmodels) · Power BI · Docker</div>
+      <p class="project-desc">An end-to-end analytics pipeline on 99,441 orders across 9 relational tables, modeled as a star schema with quintile-scored RFM segmentation across ~95K customers into 7 value tiers. A controlled hypothesis test isolated delivery time's effect on satisfaction independent of distance — Shapiro-Wilk confirmed non-normality, so Mann-Whitney U was used as the pre-committed primary test. Findings were shipped as a 6-visual interactive Power BI dashboard with 5 stakeholder-ready recommendations.</p>
+      <div class="stat-row">
+        <span class="stat">4.31 vs 3.75 rating, p&lt;0.001</span>
+        <span class="stat">3.04% repeat-purchase rate</span>
+        <span class="stat">62.5% revenue in 3/27 states</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-items">Python, SQL, C, C++</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Machine Learning</div>
+        <div class="skill-items">Scikit-learn, Random Forest, XGBoost, Logistic Regression, SHAP, SMOTE</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Deep Learning</div>
+        <div class="skill-items">PyTorch, TensorFlow, Keras, CNNs, RNNs, LSTMs, Transformers</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">LLM / Multi-Agent Systems</div>
+        <div class="skill-items">LangGraph, LangChain, Anthropic Claude API, ChromaDB, RAG, DeepEval</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Data Engineering &amp; Analytics</div>
+        <div class="skill-items">PostgreSQL, Pandas, Polars, scipy, statsmodels, Power BI, Tableau</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Tools &amp; Platforms</div>
+        <div class="skill-items">Git, Docker, FastAPI, Streamlit, Linux, Jupyter</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-row">
+      <div class="edu-left">
+        <strong>B.Tech, Mechanical Engineering</strong>
+        <div>Indian Institute of Technology, Jodhpur</div>
+      </div>
+      <div class="edu-right">Aug 2024 — May 2028 (Expected)</div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-left">
+        <strong>Data Science Master Program</strong>
+        <div>CampusX — ML, Deep Learning, SQL, EDA, Feature Engineering</div>
+      </div>
+      <div class="edu-right">Certification</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Get in touch</h2>
+    </div>
+    <p>Looking for a Data Science / ML internship — happy to talk about applied ML, LLM agent systems, or statistics-heavy analytics work.</p>
+    <div class="foot-links">
+      <a href="mailto:arnavsharma090406@gmail.com">arnavsharma090406@gmail.com</a>
+      <a href="https://github.com/arnavsharma09" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/arnav-sharma09" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="foot-note">Jodhpur, India</p>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.project, .about-text, .skills-grid, .edu-row');
+  revealEls.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
