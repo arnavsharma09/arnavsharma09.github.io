@@ -92,7 +92,8 @@
   }
 
   /* ---------- ABOUT ---------- */
-  .about-text{font-size:16.5px; color:var(--ink-soft); max-width:640px;}
+  .about-text{font-size:16.5px; color:var(--ink-soft); max-width:640px; margin:0 0 16px;}
+  .about-text:last-child{margin-bottom:0;}
   .about-text strong{color:var(--ink); font-weight:600;}
 
   /* ---------- PROJECTS ---------- */
@@ -171,9 +172,8 @@
 
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow">Jodhpur, India</p>
     <h1 class="title">Data science that<br><em>holds up</em> under testing.</h1>
-    <p class="sub">I'm Arnav — a Mechanical Engineering student at IIT Jodhpur building multi-agent LLM systems, ML pipelines, and analytics products, with an emphasis on results that are statistically defensible, not just demo-ready.</p>
+    <p class="sub">I'm Arnav, a mechanical engineering student at IIT Jodhpur. I build ML pipelines and LLM agent systems, then try to break them, so the results I show are ones that hold up under scrutiny.</p>
     <div class="hero-links">
       <a class="pill primary" href="mailto:arnavsharma090406@gmail.com">Email me</a>
       <a class="pill" href="https://github.com/arnavsharma09" target="_blank" rel="noopener">GitHub</a>
@@ -189,7 +189,10 @@
       <h2 class="section-title">About</h2>
     </div>
     <p class="about-text">
-      I'm a pre-final year <strong>B.Tech Mechanical Engineering</strong> student at <strong>IIT Jodhpur</strong> (2024–2028), working on applied ML and LLM systems. My projects span self-correcting multi-agent architectures, credit-risk modeling, and SQL/BI analytics — built with an emphasis on validating assumptions statistically before trusting a result, rather than optimizing purely for a demo. I'm currently looking for a Data Science / Machine Learning internship where I can build and ship real systems.
+      I'm a <strong>mechanical engineering</strong> student at <strong>IIT Jodhpur</strong> (2024–2028) building a career in data science and machine learning. I approach ML the way an engineer approaches a structure: find how it fails, measure how much it can take, and be honest about where its limits are.
+    </p>
+    <p class="about-text">
+      I care more about results that hold up under scrutiny than results that look impressive. That's why my projects pre-commit their statistical tests, attack their own defenses, and report confidence intervals and limitations. I want to work on systems people can trust, and I'm seeking a <strong>Data Science, ML, or AI Engineering internship</strong>.
     </p>
   </div>
 </section>
@@ -199,6 +202,21 @@
     <div class="section-head">
       <span class="section-num">02</span>
       <h2 class="section-title">Projects</h2>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">Agent Red-Team</span>
+        <a class="project-link" href="https://github.com/arnavsharma09/agent-redteam" target="_blank" rel="noopener">github.com/arnavsharma09/agent-redteam →</a>
+      </div>
+      <div class="project-stack">Python · Ollama (Qwen2.5-7B) · UCB1 Bandit · Wilson CIs · pytest</div>
+      <p class="project-desc">An adaptive red-team harness for tool-calling LLM agents. A UCB1 bandit searches 144 prompt-injection recipes against a local Qwen2.5-7B agent; undefended, injections succeeded in 17–37% of episodes (37.0% destructive, 17.4% exfiltration over 350 episodes). An argument-provenance taint guardrail cut exfiltration to 0/250 episodes versus 61/350 undefended, with 0/36 benign tasks blocked (Wilson 95% upper bound 9.6%) and 35/36 task completion. The attacker also exposed a gap in my own defense (file reads were trusted, and 15/31 exec episodes got through), which I fixed, then closed a base64 self-decoding bypass (0/100 executions after). 191 unit tests, limits documented.</p>
+      <div class="stat-row">
+        <span class="stat">144 attack recipes</span>
+        <span class="stat">61/350 → 0/250 exfiltration</span>
+        <span class="stat">0/36 benign blocks</span>
+        <span class="stat">191 unit tests</span>
+      </div>
     </div>
 
     <div class="project">
@@ -217,20 +235,6 @@
 
     <div class="project">
       <div class="project-top">
-        <span class="project-name">Credit Risk Prediction System</span>
-        <a class="project-link" href="https://github.com/arnavsharma09/credit-risk-prediction" target="_blank" rel="noopener">github.com/arnavsharma09/credit-risk-prediction →</a>
-      </div>
-      <div class="project-stack">Python · XGBoost · Scikit-learn · SHAP · SMOTE · Streamlit</div>
-      <p class="project-desc">A full ML pipeline on a 150K+ record dataset with severe class imbalance (93.7%), corrected via SMOTE. Random Forest, XGBoost, and Logistic Regression were benchmarked through cross-validation, with Random Forest selected as the best performer. SHAP explainability surfaces the top risk drivers per application, exposed through a real-time Streamlit scoring dashboard.</p>
-      <div class="stat-row">
-        <span class="stat">RF: 0.8588 AUC-ROC</span>
-        <span class="stat">XGB: 0.8492 AUC-ROC</span>
-        <span class="stat">LogReg: 0.8234 AUC-ROC</span>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-top">
         <span class="project-name">RetainIQ</span>
         <a class="project-link" href="https://github.com/arnavsharma09/RetainIQ" target="_blank" rel="noopener">github.com/arnavsharma09/RetainIQ →</a>
       </div>
@@ -240,6 +244,20 @@
         <span class="stat">4.31 vs 3.75 rating, p&lt;0.001</span>
         <span class="stat">3.04% repeat-purchase rate</span>
         <span class="stat">62.5% revenue in 3/27 states</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">Credit Risk Prediction System</span>
+        <a class="project-link" href="https://github.com/arnavsharma09/credit-risk-prediction" target="_blank" rel="noopener">github.com/arnavsharma09/credit-risk-prediction →</a>
+      </div>
+      <div class="project-stack">Python · XGBoost · Scikit-learn · SHAP · SMOTE · Streamlit</div>
+      <p class="project-desc">A full ML pipeline on a 150K+ record dataset with severe class imbalance (93.7%), corrected via SMOTE. Random Forest, XGBoost, and Logistic Regression were benchmarked through cross-validation, with Random Forest selected as the best performer. SHAP explainability surfaces the top risk drivers per application, exposed through a real-time Streamlit scoring dashboard.</p>
+      <div class="stat-row">
+        <span class="stat">RF: 0.8588 AUC-ROC</span>
+        <span class="stat">XGB: 0.8492 AUC-ROC</span>
+        <span class="stat">LogReg: 0.8234 AUC-ROC</span>
       </div>
     </div>
   </div>
@@ -257,24 +275,32 @@
         <div class="skill-items">Python, SQL, C, C++</div>
       </div>
       <div class="skill-row">
+        <div class="skill-cat">Math &amp; Statistics</div>
+        <div class="skill-items">Linear Algebra, Calculus &amp; Backprop, Probability, Optimization (Gradient Descent), Hypothesis Testing, Confidence Intervals</div>
+      </div>
+      <div class="skill-row">
         <div class="skill-cat">Machine Learning</div>
-        <div class="skill-items">Scikit-learn, Random Forest, XGBoost, Logistic Regression, SHAP, SMOTE</div>
+        <div class="skill-items">Scikit-learn, Regression (Ridge, Lasso), Logistic Regression, KNN, SVM, Naive Bayes, Decision Trees, Random Forest, XGBoost, Ensemble Methods, K-Means, DBSCAN, PCA, t-SNE, Anomaly Detection, Cross-Validation, Optuna, SHAP, SMOTE, Multi-Armed Bandits (UCB1)</div>
       </div>
       <div class="skill-row">
         <div class="skill-cat">Deep Learning</div>
-        <div class="skill-items">PyTorch, TensorFlow, Keras, CNNs, RNNs, LSTMs, Transformers</div>
+        <div class="skill-items">PyTorch, TensorFlow, Keras, CNNs, RNNs, LSTMs, Transformers, Transfer Learning, Embeddings, GANs, VAEs, Diffusion Models, Reinforcement Learning, Graph Neural Networks</div>
       </div>
       <div class="skill-row">
         <div class="skill-cat">LLM / Multi-Agent Systems</div>
-        <div class="skill-items">LangGraph, LangChain, Anthropic Claude API, ChromaDB, RAG, DeepEval</div>
+        <div class="skill-items">LangGraph, LangChain, Anthropic Claude API, ChromaDB, RAG, DeepEval, Agentic AI Workflows, Prompt Engineering, LLM Security / Red-Teaming, Prompt-Injection Defense, Guardrail Design, LLM Evaluation, Model Context Protocol (MCP)</div>
       </div>
       <div class="skill-row">
-        <div class="skill-cat">Data Engineering &amp; Analytics</div>
-        <div class="skill-items">PostgreSQL, Pandas, Polars, scipy, statsmodels, Power BI, Tableau</div>
+        <div class="skill-cat">Data Engineering, Analytics &amp; BI</div>
+        <div class="skill-items">PostgreSQL, SQL (CTEs, window functions, dimensional modeling), Pandas, NumPy, Polars, Feature Engineering, scipy, statsmodels, EDA, Power BI, Tableau, Matplotlib, Seaborn, Plotly, ETL, Data Cleaning</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">MLOps &amp; Deployment</div>
+        <div class="skill-items">MLflow, Docker, REST APIs, FastAPI, Streamlit, Ollama, pytest</div>
       </div>
       <div class="skill-row">
         <div class="skill-cat">Tools &amp; Platforms</div>
-        <div class="skill-items">Git, Docker, FastAPI, Streamlit, Linux, Jupyter</div>
+        <div class="skill-items">Git, Linux, Jupyter, Google Colab</div>
       </div>
     </div>
   </div>
@@ -315,7 +341,7 @@
       <a href="https://github.com/arnavsharma09" target="_blank" rel="noopener">GitHub</a>
       <a href="https://linkedin.com/in/arnav-sharma09" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <p class="foot-note">Jodhpur, India</p>
+    <p class="foot-note">Delhi, India</p>
   </div>
 </footer>
 
